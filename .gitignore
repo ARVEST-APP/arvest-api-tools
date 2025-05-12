@@ -1,0 +1,5 @@
+arvesttools.egg-info
+build
+venv
+*.DS_Store
+tests
