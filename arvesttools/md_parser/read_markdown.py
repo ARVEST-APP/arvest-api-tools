@@ -105,3 +105,41 @@ def extraction_metadonne(target, recuperation):
                   cible = resultat[virgule:virgule+4]
                   resultat = resultat.replace(cible,",")
   return resultat
+
+def extraction_duration2(recuperation, start, end, format):
+    num_ligne = 0
+    resultat = []
+    numa = 0
+    for liste in recuperation:
+        num_ligne = num_ligne + 1
+        if num_ligne > 2 and format[numa] == "video":
+            #Extraction des timecode de la ligne en seconde
+            timers = []
+            timer1 = sec_convert(liste[start])
+            timers.append(timer1)
+            timer2 = sec_convert(liste[end])
+            timers.append(timer2)
+            duration = timer2 - timer1
+            timers.append(duration)
+            resultat.append(timers)
+            numa +=1
+    return resultat
+
+
+def link_conversion(http, annot) :
+    for i in annot :
+        if i.find(http) > 0 :
+            wa = annot.index(i)
+            a = i.index(http)
+            b = len(i)
+            url1 = (i[a:b])
+            if url1.find(" ") > 0:
+                j = url1.index(" ")
+                url2 = (url1[0:j])
+                url3 = f"<a href=\"{url2}\">🔗</a>"
+                y = i.replace(url1,url3)
+                annot[wa] = y
+            else :
+                url2 = f"<a href=\"{url1}\">🔗</a>"
+                y = i.replace(url1,url2)
+                annot[wa] = y

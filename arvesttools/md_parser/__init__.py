@@ -1,1 +1,1 @@
-from .read_markdown import recuperation, sec_convert, extraction_colonne, extraction_data, extraction_duration, extraction_metadonne
+from .read_markdown import recuperation, sec_convert, extraction_colonne, extraction_data, extraction_duration, extraction_metadonne, extraction_duration2, link_conversion
